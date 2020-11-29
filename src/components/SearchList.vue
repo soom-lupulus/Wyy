@@ -32,7 +32,7 @@ export default {
   mounted() {},
   watch: {
     searchedmusic(val) {
-      console.log("改变了");
+      // console.log("改变了");
       this.$nextTick(() => {
         let outer = this.$refs.outer;
         let bs = new BScroll(outer, {
@@ -47,7 +47,7 @@ export default {
     songClick(item) {
       //根据id获取歌曲可用性
       const { id } = item;
-      console.log(id);
+      // console.log(id);
       //判断id是否有用
       this.$store.dispatch("getMusicUsable", id).then((_) => {
         if (this.searchedmusicusable.success) {
@@ -56,6 +56,8 @@ export default {
       });
       //保存正在播放（选中）的歌曲
       this.$store.dispatch("savePlayingSong", item);
+      //改变播放按钮状态
+      this.$store.dispatch("toggleBtnState", false);
     },
   },
 };
@@ -63,10 +65,7 @@ export default {
 
 <style lang="less" scoped>
 .outer {
-  //   width: 100%;
-    height: ~"calc(100vh - 8rem)";
-//   height: 100vh;
-//   background-color: rgb(231, 220, 209);
+  height: ~"calc(100vh - 8rem)";
   overflow: hidden;
   ul {
     //   background-color: rgb(23, 245, 245);

@@ -50,7 +50,12 @@ export default {
 
 <style lang="less" scoped>
 .wrapper {
+  width: 100%;
   display: flex;
+  // position: fixed;
+  // top: 4rem;
+  // z-index: 999;
+  background-color: #fff;
   span {
     flex: 1;
     text-align: center;
@@ -59,6 +64,6 @@ export default {
   }
 }
 .underline {
-  border-bottom: 0.2rem solid black;
+  border-bottom: 0.2em solid black;
 }
 </style>

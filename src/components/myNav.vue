@@ -2,9 +2,9 @@
   <div>
     <yggNav3 class="head">
       <template v-slot:left>
-        <div id="musicName">网易鱼</div>
+        <div id="musicName" @click="goBack">网易鱼</div>
       </template>
-      <template v-slot:middle>
+      <template v-slot:middle id="middle-outer">
         <mt-search
           class="searchinput"
           v-model="searchValue"
@@ -41,8 +41,12 @@ export default {
     goSearch() {
       const { searchValue } = this;
       //获取所有的歌曲信息(id)
-      this.$store.dispatch("getSearchedMusic", searchValue)
+      this.$store.dispatch("getSearchedMusic", searchValue);
       this.$emit("gotoSearch");
+    },
+    //
+    goBack() {
+      this.$emit("goBackMain");
     },
   },
 };
@@ -62,6 +66,7 @@ export default {
 
 .searchinput /deep/ .mint-searchbar {
   background-color: transparent;
+  margin: auto;
 }
 .searchinput /deep/ .mint-searchbar-inner {
   border: 1px solid rgb(207, 197, 197);
@@ -72,7 +77,15 @@ export default {
   line-height: 4rem;
   text-align: center;
 }
-.head{
+.head {
   position: fixed;
+  // z-index: 999;
+  background-color: #fff;
+}
+
+.mint-search {
+  display: flex;
+  // background-color: antiquewhite;
+  height: 4rem;
 }
 </style>

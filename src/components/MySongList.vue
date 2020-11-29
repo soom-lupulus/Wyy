@@ -1,0 +1,83 @@
+<template>
+  <div class="outer-outer">
+    <div class="title">
+      <p>这是我的歌单</p>
+    </div>
+    <div class="mysonglistwrapper" ref="mysonglistwrapper">
+      <ul>
+        <li v-for="(item, index) in mycreatedsonglist" :key="index">
+          <ygg-flex-3>
+            <template v-slot:left>
+              <!--  -->
+              <img :src="item.coverImgUrl | imgfilter" @load="bs.refresh()" />
+            </template>
+            <template v-slot:middle>
+              <div class="middle-outer">
+                <p>{{ item.name }}</p>
+                <p>{{ item.trackCount }}首</p>
+              </div>
+            </template>
+            <template v-slot:right>
+              <div class="right-outer">
+                <i class="fa fa-ellipsis-v" aria-hidden="true"></i>
+              </div>
+            </template>
+          </ygg-flex-3>
+        </li>
+      </ul>
+    </div>
+  </div>
+</template>
+
+<script>
+import { mapState, mapGetters } from "vuex";
+import yggFlex3 from "../myComponent/yggFlex3.vue";
+import BScroll from "@better-scroll/core";
+export default {
+  components: { yggFlex3 },
+  data() {
+    return {
+      bs: {},
+    };
+  },
+  computed: {
+    ...mapState(["usersonglist"]),
+    ...mapGetters(["mycreatedsonglist"]),
+  },
+  mounted() {
+    this.$nextTick(() => {
+      this.bs = new BScroll(this.$refs.mysonglistwrapper, {});
+    });
+  },
+};
+</script>
+
+<style lang="less" scoped>
+.mysonglistwrapper {
+  height: 50vh;
+  //   background-color: antiquewhite;
+  overflow: hidden;
+}
+.middle-outer {
+  width: 100%;
+  p {
+    font-size: 0.5em;
+  }
+}
+.right-outer {
+  i {
+    font-size: 1.2em;
+    color: rgb(104, 102, 102);
+  }
+}
+.title {
+  p {
+    // position: sticky;
+    // top: 0;
+  }
+}
+.outer-outer {
+  // position: sticky;
+  // top: 0;
+}
+</style>

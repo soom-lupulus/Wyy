@@ -52,6 +52,5 @@ export default {};
 .outer{
   width: 100vw;
   height: 4rem;
-
 }
 </style>

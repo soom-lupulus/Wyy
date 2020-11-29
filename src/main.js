@@ -18,16 +18,13 @@ import 'mint-ui/lib/style.css';
 Vue.use(Mint);
 //引入字体图标
 import 'font-awesome/css/font-awesome.min.css'
-//引入momentjs
-import moment from 'moment'
-
-
-
-//定义一个全局过滤器实现日期格式化
-Vue.filter('datrfmt',function (input) {//当input为时间戳时，需转为Number类型
-  // 使用momentjs这个日期格式化类库实现日期的格式化功能
-  return moment(input).format('YYYY-MM-DD');
-});
+import './assets/iconfont/iconfont.css'
+//引入过滤器
+import './filter/index'
+//建立事件管理中心
+Vue.prototype.$bus = new Vue()
+//引入动画
+import 'animate.css'
 
 
 
