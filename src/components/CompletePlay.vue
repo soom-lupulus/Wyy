@@ -4,7 +4,7 @@
       enter-active-class="animate__animated animate__backInUp"
       leave-active-class="animate__animated animate__backOutDown"
     >
-      <div class="outer" ref="myself" v-show="isshow">
+      <div class="outer" ref="myself">
         <div class="head">
           <i class="fa fa-chevron-down" aria-hidden="true" @click="goDown"></i>
           <i class="iconfont icon-19"></i>
@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { Toast } from 'mint-ui';
+import { Toast } from "mint-ui";
 import { mapGetters, mapState } from "vuex";
 import processBar from "./ProcessBar";
 import audioBtns from "./AudioBtns";
@@ -55,7 +55,9 @@ export default {
     processBar,
     audioBtns,
   },
-  mounted() {},
+  mounted() {
+    this.watchLoveState();
+  },
   data() {
     return {
       likedyet: false,
@@ -67,9 +69,42 @@ export default {
   },
   watch: {
     //监视判断正在播放的歌曲是不是喜欢的歌曲
-    playingsong(val) {
+    playingsong() {
+      this.watchLoveState();
+    },
+  },
+  methods: {
+    goDown() {
+      this.$router.go(-1);
+    },
+    async toggleLikeState() {
+      //切换状态
+      this.likedyet = !this.likedyet;
       const { id } = this.playingsong;
-
+      // console.log("我是" + this.likedyet);
+      const { data: res } = await this.$http.get("/like", {
+        params: {
+          id,
+          like: this.likedyet,
+        },
+      });
+      if (res.code === 200) {
+        this.$refs.heart.classList.remove("fa-heart", "fa-heart-o");
+        if (this.likedyet) {
+          this.$refs.heart.classList.add("fa-heart");
+          Toast("喜欢成功~");
+        } else {
+          this.$refs.heart.classList.add("fa-heart-o");
+          Toast("取消成功~");
+        }
+      } else {
+        Toast("操作失败~");
+      }
+    },
+    //监听喜欢
+    watchLoveState() {
+      const { id } = this.playingsong;
+      console.log(id);
       this.likedyet = this.userlikedsongsids.some((item) => {
         return item === id;
       });
@@ -83,33 +118,6 @@ export default {
           this.$refs.heart.classList.add("fa-heart-o");
         }
       });
-      // console.log(this.$refs.heart);
-    },
-  },
-  methods: {
-    goDown() {
-      //   console.log(this.$refs.myself);
-      // this.$refs.myself.style.top = '100vh'
-      //   this.$refs.myself.style.opacity = '0'
-      this.$emit("destroy");
-    },
-    async toggleLikeState() {
-      const { id } = this.playingsong;
-      const { data: res } = await this.$http.post("/like", {
-        id,
-        like: !this.likedyet,
-      });
-      if (res.code === 200) {
-        this.likedyet = !this.likedyet
-        this.$refs.heart.classList.remove("fa-heart", "fa-heart-o");
-        if (this.likedyet) {
-          this.$refs.heart.classList.add("fa-heart");
-          Toast('喜欢成功~')
-        } else {
-          this.$refs.heart.classList.add("fa-heart-o");
-          Toast('取消成功~')
-        }
-      }
     },
   },
 };
@@ -121,9 +129,9 @@ export default {
   height: 100vh;
   position: fixed;
   top: 0;
-  // z-index: 99;
+  z-index: 99;
   // margin-top: -12rem;
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
   .head {
     height: 10vh;
     // border-bottom: 1px solid red;

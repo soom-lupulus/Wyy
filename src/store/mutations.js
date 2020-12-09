@@ -5,6 +5,7 @@ import {
     DAY_RECOMMEND_SONG,
     USER_PLAYEDSONGS_RECORD,
     USER_LIKED_SONGS_IDS,
+    SONG_LIST_INFO,
     SEARCHED_MUSIC,
     SEARCHED_MUSIC_USABLE,
     PLAYING_SONG,
@@ -69,6 +70,10 @@ export default{
     //获取用户喜欢的歌曲ids
     [USER_LIKED_SONGS_IDS](state, userlikedsongsids){
         state.userlikedsongsids = userlikedsongsids
+    },
+    //获取歌单详情
+    [SONG_LIST_INFO](state, songlistInfo){
+        state.songlistInfo = songlistInfo
     }
 
 

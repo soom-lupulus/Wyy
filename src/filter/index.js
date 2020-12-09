@@ -21,3 +21,5 @@ Vue.filter('songfilter', input =>{
 Vue.filter('imgfilter', input=>{
   return input + '?param=50y50'
 })
+
+//名字过滤器

@@ -11,7 +11,7 @@
         <ygg-input type="password" v-model="pazzword">
           <span>密码</span>
         </ygg-input>
-        <button @click="login" id="logbtn" class="mycenter">登录</button>
+        <button @click.prevent="login" id="logbtn" class="mycenter">登录</button>
       </form>
     </main>
   </div>
@@ -29,10 +29,8 @@ export default {
     };
   },
   mounted() {
-    this.getSth();
   },
   methods: {
-    getSth() {},
     //登录方法
     async login() {
       try {
@@ -40,10 +38,11 @@ export default {
           params: {
             phone: this.phone,
             password: this.pazzword,
-            timestamp: new Date().getTime(),
+            timestamp: new Date().getTime()
           },
         });
         if (res.code === 200 || res.code === 304) {
+          console.log('我是res');
           console.log(res);
           this.$router.replace("/Main");
           Toast("登陆成功~");
@@ -53,6 +52,7 @@ export default {
         }
       } catch (error) {
           Toast("账号或密码错误~");
+          console.log('我是error');
           console.log(error);
       }
     },

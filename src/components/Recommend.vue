@@ -81,7 +81,7 @@ export default {
   // position: absolute;
   // top: 7rem;
   .wrapper {
-    height: 70vh;
+    height: 75vh;
     overflow: hidden;
     // background-color: aquamarine;
     .recommend-middle {

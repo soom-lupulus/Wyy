@@ -1,17 +1,19 @@
 <template>
-  <div class="no">
+  <div class="no" v-if="userinfo">
     <!-- 个人信息栏 -->
     <ygg-flex3>
       <template v-slot:left>
         <img :src="avatarUrl" alt="" id="headsculpture " />
       </template>
       <template v-slot:middle>
-        <p>{{ nickname }}</p>
-        <p>我的生日：{{ userinfo.profile.birthday | datrfmt }}</p>
+        <div class="mine-middle">
+          <p>{{ nickname }}</p>
+          <p>我的生日：{{ userinfo.profile.birthday | datrfmt }}</p>
+        </div>
       </template>
     </ygg-flex3>
     <!-- 喜欢，最近 -->
-    <ygg-flex1 class="categroy">
+    <!-- <ygg-flex1 class="categroy">
       <template v-slot:left>
         <div class="icon">
           <i class="fa fa-heart" aria-hidden="true"></i>
@@ -27,9 +29,9 @@
           <i class="fa fa-paper-plane" aria-hidden="true"></i>
         </div>
       </template>
-    </ygg-flex1>
+    </ygg-flex1> -->
     <!-- 我的歌单 -->
-    <my-song-list/>
+    <my-song-list />
   </div>
 </template>
 
@@ -37,11 +39,11 @@
 import { mapState } from "vuex";
 import yggFlex3 from "../myComponent/yggFlex3";
 import YggFlex1 from "../myComponent/yggFlex1";
-import MySongList from './MySongList.vue';
+import MySongList from "./MySongList.vue";
 export default {
   components: {
     yggFlex3,
-    YggFlex1,
+    // YggFlex1,
     MySongList,
   },
   computed: {
@@ -78,7 +80,7 @@ export default {
   width: 3rem;
   height: 3rem;
 }
-.no{
+.no {
   width: 100%;
   // position: absolute;
   // z-index: 1;

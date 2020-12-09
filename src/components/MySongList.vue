@@ -1,12 +1,12 @@
 <template>
-  <div class="outer-outer">
+  <div>
     <div class="title">
       <p>这是我的歌单</p>
     </div>
     <div class="mysonglistwrapper" ref="mysonglistwrapper">
       <ul>
-        <li v-for="(item, index) in mycreatedsonglist" :key="index">
-          <ygg-flex-3>
+        <li v-for="(item, index) in mycreatedsonglist" :key="index" @click="showListInfo(item)">
+          <ygg-flex-3 >
             <template v-slot:left>
               <!--  -->
               <img :src="item.coverImgUrl | imgfilter" @load="bs.refresh()" />
@@ -26,6 +26,7 @@
         </li>
       </ul>
     </div>
+    
   </div>
 </template>
 
@@ -34,7 +35,7 @@ import { mapState, mapGetters } from "vuex";
 import yggFlex3 from "../myComponent/yggFlex3.vue";
 import BScroll from "@better-scroll/core";
 export default {
-  components: { yggFlex3 },
+  components: { yggFlex3},
   data() {
     return {
       bs: {},
@@ -46,15 +47,22 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.bs = new BScroll(this.$refs.mysonglistwrapper, {});
+      this.bs = new BScroll(this.$refs.mysonglistwrapper, {
+        click: true
+      });
     });
+  },
+  methods: {
+    showListInfo(item){
+      this.$router.push('/mysonglist/' + item.id)
+    }
   },
 };
 </script>
 
 <style lang="less" scoped>
 .mysonglistwrapper {
-  height: 50vh;
+  height: 65vh;
   //   background-color: antiquewhite;
   overflow: hidden;
 }
@@ -72,8 +80,10 @@ export default {
 }
 .title {
   p {
-    // position: sticky;
-    // top: 0;
+    font-size: 1em;
+    font-family: '楷体';
+    padding: 0.2rem 1rem;
+    text-shadow: 5px;
   }
 }
 .outer-outer {

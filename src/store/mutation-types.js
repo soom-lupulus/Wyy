@@ -10,6 +10,8 @@ export const DAY_RECOMMEND_SONG = 'day_recommend_song'
 export const USER_PLAYEDSONGS_RECORD = 'user_playedsongs_record'
 //获取用户喜欢歌曲id列表
 export const USER_LIKED_SONGS_IDS = 'user_liked_songs_ids'
+//获取歌单详情
+export const SONG_LIST_INFO = 'song_list_info'
 
 //搜索音乐
 export const SEARCHED_MUSIC = 'searched_music'

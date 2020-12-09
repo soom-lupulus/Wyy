@@ -5,6 +5,8 @@ import Login from '../views/Login'
 import Main from '../views/Main'
 import Mine from '../components/Mine'
 import Recommend from '../components/Recommend'
+import SongListInfo from '../components/SongListInfo'
+import CompletePlay from '../components/CompletePlay'
 
 //解决路由重复点击报错
 const originalPush = VueRouter.prototype.push
@@ -25,10 +27,8 @@ const routes = [
   },
   {
     path: '/main',
-    redirect: '/main/mine',
     component: Main,
     children: [
-      
       {
         path: 'mine',
         component: Mine
@@ -46,7 +46,16 @@ const routes = [
         component: Mine
       }
     ]
-  }
+  },
+  {
+    path: '/mysonglist/:songlistid',
+    component: SongListInfo,
+    props: true
+  },
+  {
+    path: '/complete',
+    component: CompletePlay
+  },
 ]
 
 
@@ -56,14 +65,8 @@ const router = new VueRouter({
 })
 
 //全局路由导航守卫
-router.beforeEach((to, from, next) => {
-  if(to.path === '/main/recommend'){
-    next()
-  }else{
-    next()
-  }
-  
-})
+// router.beforeEach((to, from, next) => { 
+// })
 
 
 

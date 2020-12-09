@@ -11,7 +11,8 @@ export default{
     userplayedsongsrecord: {},
     //获取用户喜欢列表
     userlikedsongsids: [],
-
+    //获取歌单详情
+    songlistInfo: {},
     //搜索的音乐
     searchedmusic: [],
     //搜索音乐的可用性

@@ -15,9 +15,19 @@
         </mt-search>
       </template>
       <template v-slot:right>
-        <i class="fa fa-bars" aria-hidden="true"></i>
+        <i class="fa fa-bars" aria-hidden="true" @click="drawer = true"></i>
       </template>
     </yggNav3>
+    <!-- 侧边栏 -->
+    <!-- 抽屉 -->
+    <el-drawer
+      title="我是侧边栏~"
+      :visible.sync="drawer"
+      :direction="direction"
+      :before-close="handleClose"
+    >
+      <span>功能尚未开发!</span>
+    </el-drawer>
   </div>
 </template>
 
@@ -31,6 +41,8 @@ export default {
   data() {
     return {
       searchValue: "",
+      direction: "rtl",
+      drawer: false,
     };
   },
   computed: {
@@ -47,6 +59,10 @@ export default {
     //
     goBack() {
       this.$emit("goBackMain");
+    },
+    //点击关闭侧边栏
+    handleClose(done) {
+      done()
     },
   },
 };

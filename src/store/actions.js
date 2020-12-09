@@ -5,6 +5,7 @@ import {
     DAY_RECOMMEND_SONG,
     USER_PLAYEDSONGS_RECORD,
     USER_LIKED_SONGS_IDS,
+    SONG_LIST_INFO,
     SEARCHED_MUSIC,
     SEARCHED_MUSIC_USABLE,
     PLAYING_SONG,
@@ -109,7 +110,20 @@ export default {
         }
         
     },
-    
+    async getsonglistinfo({commit}, songlist_id){
+        const {data: res} = await yyhaxios({
+            url: '/playlist/detail',
+            params: {
+                id: songlist_id
+            }
+        })
+        if(res.code === 200){
+            commit(SONG_LIST_INFO, res)
+        }
+        return new Promise((resolve, reject)=>{
+            resolve('我服了')
+        })
+    }
 
 
 

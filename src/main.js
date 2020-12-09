@@ -25,6 +25,10 @@ import './filter/index'
 Vue.prototype.$bus = new Vue()
 //引入动画
 import 'animate.css'
+//引入elementui
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+Vue.use(ElementUI)
 
 
 

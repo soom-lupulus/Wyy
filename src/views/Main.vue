@@ -12,10 +12,9 @@
     <component v-bind:is="middlecomponent"></component>
     <!-- 中间分页 -->
     <router-view v-if="middlecomponent === 'tags'"></router-view>
-    <!-- 底部播放 -->
-    <bottom-play @click.native="showCompletePlay" />
+    
     <!-- 完整播放 -->
-    <complete-play @destroy="destroy" :isshow="complete_play_visible"/>
+    <!-- <complete-play @destroy="destroy" :isshow="complete_play_visible" /> -->
   </div>
 </template>
 
@@ -25,7 +24,7 @@ import bottomPlay from "../components/BottomPlay";
 import tags from "../components/Tags";
 import searchList from "../components/SearchList";
 import completePlay from "../components/CompletePlay";
-import {mapState} from 'vuex'
+import { mapState } from "vuex";
 
 export default {
   components: {
@@ -37,13 +36,13 @@ export default {
   },
   created() {
     //获取用户歌单
-    this.$store.dispatch('getUserSongList', this.userinfo.account.id)
+    this.$store.dispatch("getUserSongList", this.userinfo.account.id);
     //获取用户信息 , 歌单，收藏，mv, dj 数量
     // this.$store.dispatch("getUserInfo1");
     //获取用户播放记录
-    this.$store.dispatch('getUserPlayedSongsRecord', this.userinfo.account.id)
+    this.$store.dispatch("getUserPlayedSongsRecord", this.userinfo.account.id);
     //获取用户喜欢列表
-    this.$store.dispatch('getUserLikedSongsIds', this.userinfo.account.id)
+    this.$store.dispatch("getUserLikedSongsIds", this.userinfo.account.id);
   },
   data() {
     return {
@@ -54,7 +53,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(['userinfo'])
+    ...mapState(["userinfo"]),
   },
   methods: {
     toggleState() {
