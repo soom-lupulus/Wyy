@@ -28,16 +28,19 @@ main {
   display: flex;
   align-items: center;
   .ipt {
-    width: 14rem;
+    width: 12rem;
     height: 2rem;
-    background-color: transparent;
-    border: 0.1rem solid rgba(5, 5, 5, 0.8);
+    padding-left: 1rem;
+    background-color: rgba(209,209,209,0.19);
+    border: 0.1rem solid rgba(107, 105, 105, 0.8);
     outline: none;
     margin: 1rem 0;
+    margin-left: 3rem;
   }
   span {
+    width: 3rem;
     font-size: 0.3rem;
-    margin-left: 1rem;
+    padding-left: 1rem;
   }
 }
 </style>

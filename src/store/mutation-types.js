@@ -27,3 +27,7 @@ export const PLAYING_SONG_DURATION = 'playing_song_duration'
 export const PLAYING_SONG_CURRENT_TIME = 'playing_song_current_time'
 //暂停按钮的状态
 export const PLAYING_BUTTON_STATE = 'playing_button_state'
+//播放列表
+export const PLAYING_LIST = 'playing_list'
+//播放列表下标
+export const PLAYING_LIST_INDEX = 'playing_list_index'

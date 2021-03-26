@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import { Toast } from 'mint-ui';
 
 import Login from '../views/Login'
 import Main from '../views/Main'
@@ -28,6 +29,7 @@ const routes = [
   {
     path: '/main',
     component: Main,
+    redirect: '/main/mine',
     children: [
       {
         path: 'mine',
@@ -64,9 +66,20 @@ const router = new VueRouter({
   routes
 })
 
-//全局路由导航守卫
-// router.beforeEach((to, from, next) => { 
-// })
+// 全局路由导航守卫
+router.beforeEach((to, from, next) => {
+  if (from.path !== '/') {
+    const token = sessionStorage.getItem('token')
+    if (!token) {
+      Toast('请先登录！')
+    } else {
+      console.log('yes');
+      next()
+    }
+  }else{
+    next()
+  }
+})
 
 
 

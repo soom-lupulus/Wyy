@@ -12,11 +12,12 @@ import {
     PLAYING_SONG_URL,
     PLAYING_SONG_DURATION,
     PLAYING_SONG_CURRENT_TIME,
-    PLAYING_BUTTON_STATE
+    PLAYING_BUTTON_STATE,
 } from './mutation-types'
 //引入axios
 import axios from 'axios'
 const yyhaxios = axios.create({
+    // baseURL: 'http://polimin.top:3000',
     baseURL: 'http://localhost:3000',
     withCredentials: true
 })
@@ -100,30 +101,30 @@ export default {
         commit(USER_PLAYEDSONGS_RECORD, res)
     },
     async getUserLikedSongsIds({ commit }, uid) {
-        const {data: res} = await yyhaxios.get('/likelist', {
+        const { data: res } = await yyhaxios.get('/likelist', {
             params: {
                 uid,
             }
         })
-        if(res.code === 200){
+        if (res.code === 200) {
             commit(USER_LIKED_SONGS_IDS, res.ids)
         }
-        
+
     },
-    async getsonglistinfo({commit}, songlist_id){
-        const {data: res} = await yyhaxios({
+    async getsonglistinfo({ commit }, songlist_id) {
+        const { data: res } = await yyhaxios({
             url: '/playlist/detail',
             params: {
                 id: songlist_id
             }
         })
-        if(res.code === 200){
+        if (res.code === 200) {
             commit(SONG_LIST_INFO, res)
         }
-        return new Promise((resolve, reject)=>{
+        return new Promise((resolve, reject) => {
             resolve('我服了')
         })
-    }
+    },
 
 
 

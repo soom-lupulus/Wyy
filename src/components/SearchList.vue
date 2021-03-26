@@ -24,7 +24,12 @@ import { mapState } from "vuex";
 import BScroll from "@better-scroll/core";
 export default {
   computed: {
-    ...mapState(["searchedmusic", "searchedmusicusable"]),
+    ...mapState([
+      "searchedmusic",
+      "searchedmusicusable",
+      "playinglist",
+      "playingsong",
+    ]),
   },
   data() {
     return {};
@@ -58,6 +63,14 @@ export default {
       this.$store.dispatch("savePlayingSong", item);
       //改变播放按钮状态
       this.$store.dispatch("toggleBtnState", false);
+      //更新播放列表
+      this.updatePlayingList();
+    },
+    updatePlayingList() {
+      const { commit } = this.$store;
+      commit("playing_list");
+      commit("playing_list_index");
+      // console.log(this.$store.state.playing_list_index);
     },
   },
 };

@@ -10,7 +10,7 @@ import BottomPlay from './components/BottomPlay.vue'
 export default {
   components: { BottomPlay },
   created() {
-    console.log(this.$route);
+    // console.log(this.$route);
   },
 }
 </script>

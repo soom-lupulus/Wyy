@@ -18,18 +18,22 @@
         <div class="main">
           <div class="main-left">
             <img
-              :src="songlistInfo.playlist ? `${songlistInfo.playlist.coverImgUrl}?param=150y150` : ''"
+              :src="
+                songlistInfo.playlist
+                  ? `${songlistInfo.playlist.coverImgUrl}?param=150y150`
+                  : ''
+              "
               alt=""
             />
           </div>
           <div class="main-right">
-            <p>{{ songlistInfo.playlist ? songlistInfo.playlist.name : '' }}</p>
+            <p>{{ songlistInfo.playlist ? songlistInfo.playlist.name : "" }}</p>
             <p>0.0</p>
           </div>
         </div>
       </div>
       <footer>
-        <div id="stick">我也不知道是啥</div>
+        <!-- <div id="stick">我也不知道是啥</div> -->
         <ul>
           <li
             v-for="(item, index) in songlistInfo.playlist.tracks"
@@ -63,7 +67,14 @@ export default {
   props: ["songlistid"],
   created() {
     let p1 = this.$store.dispatch("getsonglistinfo", this.songlistid);
-    p1.then((val) => {});
+    p1.then((val) => {
+      const { commit } = this.$store;
+      commit("playing_list", {
+        flag: true,
+        arr:  this.songlistInfo.playlist.tracks
+      });
+      // commit("playing_list_index", 1);
+    });
   },
   computed: {
     ...mapState(["songlistInfo"]),
@@ -73,7 +84,13 @@ export default {
       // console.log(item.id);
       this.$store.dispatch("savePlayingSong", item);
       this.$store.dispatch("getPlayingSongUrl", item.id);
-      this.$store.dispatch('toggleBtnState', false)
+      this.$store.dispatch("toggleBtnState", false);
+      //修改播放列表Index
+      const cur_index = this.songlistInfo.playlist.tracks.indexOf(item)
+      this.$store.commit('playing_list_index', {
+        type: true,
+        val: cur_index
+      })
     },
   },
 };

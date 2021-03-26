@@ -13,10 +13,7 @@
             <ygg-flex-3>
               <template v-slot:left>
                 <div class="recommend-left">
-                  <img
-                    :src="`${item.al.picUrl}?param=50y50`"
-                    @load="bs.refresh()"
-                  />
+                  <img :src="`${item.al.picUrl}?param=50y50`" @load="bs.refresh()" />
                 </div>
               </template>
               <template v-slot:middle>
@@ -50,8 +47,10 @@ export default {
     this.$store.dispatch("getDayRecommendSong");
   },
   mounted() {
-    this.bs = new BScroll(this.$refs.wrapper, {
-      click: true
+    this.$nextTick(() => {
+      this.bs = new BScroll(this.$refs.wrapper, {
+        click: true,
+      });
     });
   },
   data() {
@@ -63,15 +62,15 @@ export default {
     ...mapState(["dayrecommendsong"]),
   },
   methods: {
-    changeMusic(item){
+    changeMusic(item) {
       // console.log('haha');
-      this.$store.dispatch('getMusicUsable', item.id)
-      this.$store.dispatch('getPlayingSongUrl', item.id)
+      this.$store.dispatch("getMusicUsable", item.id);
+      this.$store.dispatch("getPlayingSongUrl", item.id);
       //保存正在播放（选中）的歌曲
       this.$store.dispatch("savePlayingSong", item);
       //改变播放按钮状态
-      this.$store.dispatch('toggleBtnState', false)
-    }
+      this.$store.dispatch("toggleBtnState", false);
+    },
   },
 };
 </script>

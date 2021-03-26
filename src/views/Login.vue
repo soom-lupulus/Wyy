@@ -44,7 +44,8 @@ export default {
         if (res.code === 200 || res.code === 304) {
           console.log('我是res');
           console.log(res);
-          this.$router.replace("/Main");
+          window.sessionStorage.setItem('token', res.token)
+          this.$router.replace("/main");
           Toast("登陆成功~");
           this.$store.dispatch('saveUserInfo', res);
         }else if(res.code === 502){
@@ -71,6 +72,8 @@ export default {
   background-size: cover;
   position: absolute;
   z-index: -1;
+  // 设置图片模糊
+  filter: blur(3px);
 }
 .cover {
   width: 100vw;
@@ -88,7 +91,7 @@ export default {
   left: 0;
   right: 0;
   margin: 0 auto;
-  top: 20%;
+  top: 25%;
 }
 main {
   width: 20rem;
@@ -112,7 +115,9 @@ main {
       background-color: transparent;
       margin-top: 8rem;
       outline: none;
-      color: rgba(218, 206, 206, 0.9);
+      color: rgba(22,23,21,0.75);
+      font-family: '微软雅黑';
+      font-size: 15px;
     }
   }
 }

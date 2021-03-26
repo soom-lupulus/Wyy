@@ -1,5 +1,5 @@
 <template>
-  <div class="no" v-if="userinfo">
+  <div class="no" v-cloak>
     <!-- 个人信息栏 -->
     <ygg-flex3>
       <template v-slot:left>

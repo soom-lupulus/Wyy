@@ -11,16 +11,13 @@
 
 <script>
 export default {
-  beforeRouteUpdate(to, from, next) {
-    console.log(to.path);
-  },
   data() {
     return {};
   },
   computed: {
-      spans(){
-          return document.querySelectorAll(".wrapper span");
-      },
+    spans() {
+      return document.querySelectorAll(".wrapper span");
+    },
   },
   methods: {
     tagMy() {

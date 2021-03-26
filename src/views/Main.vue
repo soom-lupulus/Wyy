@@ -9,10 +9,12 @@
     </div>
     <!-- 中间标签 -->
     <!-- <tags></tags> -->
-    <component v-bind:is="middlecomponent"></component>
+    <keep-alive>
+      <component v-bind:is="middlecomponent"></component>
+    </keep-alive>
     <!-- 中间分页 -->
     <router-view v-if="middlecomponent === 'tags'"></router-view>
-    
+
     <!-- 完整播放 -->
     <!-- <complete-play @destroy="destroy" :isshow="complete_play_visible" /> -->
   </div>

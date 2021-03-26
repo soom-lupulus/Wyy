@@ -34,11 +34,13 @@
             <process-bar></process-bar>
           </div>
           <div class="audio-btns">
-            <audio-btns />
+            <audio-btns v-on:show-it="show_list = true"/>
           </div>
         </footer>
       </div>
     </transition>
+    <!-- 播放列表 -->
+    <play-list :show_list.sync= show_list />
   </div>
 </template>
 
@@ -47,6 +49,7 @@ import { Toast } from "mint-ui";
 import { mapGetters, mapState } from "vuex";
 import processBar from "./ProcessBar";
 import audioBtns from "./AudioBtns";
+import PlayList from './PlayList.vue';
 export default {
   props: {
     isshow: Boolean,
@@ -54,13 +57,16 @@ export default {
   components: {
     processBar,
     audioBtns,
+    PlayList,
   },
   mounted() {
     this.watchLoveState();
+    
   },
   data() {
     return {
       likedyet: false,
+      show_list: false
     };
   },
   computed: {
@@ -104,11 +110,11 @@ export default {
     //监听喜欢
     watchLoveState() {
       const { id } = this.playingsong;
-      console.log(id);
+      // console.log(id);
       this.likedyet = this.userlikedsongsids.some((item) => {
         return item === id;
       });
-      console.log(this.likedyet);
+      // console.log(this.likedyet);
       // 删除所有类名
       this.$nextTick(() => {
         this.$refs.heart.classList.remove("fa-heart", "fa-heart-o");
@@ -119,6 +125,7 @@ export default {
         }
       });
     },
+    
   },
 };
 </script>
@@ -129,8 +136,7 @@ export default {
   height: 100vh;
   position: fixed;
   top: 0;
-  z-index: 99;
-  // margin-top: -12rem;
+  z-index: 9;
   background-color: rgb(255, 255, 255);
   .head {
     height: 10vh;

@@ -27,6 +27,10 @@ export default{
     playingsongcurrenttime: 0,
     //暂停按钮的状态
     playingbuttonstate: true,
+    //播放列表
+    playinglist: [],
+    //播放列表下标
+    playing_list_index: 0
     
 
 

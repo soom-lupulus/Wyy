@@ -57,6 +57,9 @@ export default {
       this.$router.push('/mysonglist/' + item.id)
     }
   },
+  updated() {
+    this.bs.refresh()
+  },
 };
 </script>
 
