@@ -6,7 +6,7 @@
         <div class="wrapper" ref="wrapper">
           <!-- <p>我是播放列表</p> -->
           <ul ref="myul" v-if="playinglist">
-            <li v-for="(item, index) in playinglist" :key="index">
+            <li v-for="(item, index) in playinglist" :key="index" @click="theSongClick(item)">
               <p ref="myps">{{ item.name }}</p>
               <i class="fa fa-times" aria-hidden="true"></i>
             </li>
@@ -59,6 +59,13 @@ export default {
       this.$refs.myps[newVal].classList.add("onplaying");
       this.$refs.myps[oldVal].classList.remove("onplaying");
     }
+  },
+  methods: {
+    theSongClick(item){
+      console.log(item);
+      // 换歌
+      this.$store.dispatch('getPlayingSongUrl', item.id)
+    }
   }
 };
 </script>
@@ -95,6 +102,6 @@ export default {
   z-index: 18;
 }
 .onplaying {
-  color: rgb(177, 30, 30);
+  color: rgb(73,172,248);
 }
 </style>

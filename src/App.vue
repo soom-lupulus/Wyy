@@ -7,11 +7,15 @@
 
 <script>
 import BottomPlay from './components/BottomPlay.vue'
+import {mapState} from 'vuex'
 export default {
   components: { BottomPlay },
   created() {
-    // console.log(this.$route);
+    // v-show="$route.path !== '/login'"
   },
+  computed: {
+    ...mapState(['playinglist'])
+  }
 }
 </script>
 

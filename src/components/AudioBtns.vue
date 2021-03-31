@@ -25,6 +25,7 @@
 
 <script>
 import { mapState } from "vuex";
+
 export default {
   data() {
     return {
@@ -33,6 +34,13 @@ export default {
   },
   computed: {
     ...mapState(["playingbuttonstate", "playinglist", "playing_list_index"]),
+  },
+  mounted() {
+    this.$bus.$on('changeBtnState',()=>{
+      // 播放完毕，改变按钮状态
+      this.$store.dispatch("toggleBtnState");
+      
+    })
   },
   methods: {
     goPlay() {

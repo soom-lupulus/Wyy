@@ -8,7 +8,7 @@
             <i
               class="fa fa-long-arrow-left"
               aria-hidden="true"
-              @click="$router.go(-1)"
+              @click="$router.push({ path: '/main/mine'})"
             ></i>
             <span>歌单</span>
           </div>
@@ -122,16 +122,17 @@ export default {
     }
     .head-nav {
       height: 10vh;
-      // background: red;
       display: flex;
       .nav-left {
         i {
           padding: 0 1rem;
           font-size: 1.5em;
-          color: rgb(255, 255, 255);
+          color: rgb(238, 235, 235);
+          vertical-align: -webkit-baseline-middle;
         }
         span {
-          color: rgb(216, 209, 209);
+          color: rgb(241, 236, 236);
+          vertical-align: -webkit-baseline-middle;
         }
       }
     }
@@ -141,8 +142,9 @@ export default {
     .main-left {
       width: 40vw;
       img {
+        width: 25vw;
         padding: 0 1rem;
-        border-radius: 1.5rem;
+        border-radius: 1.2rem;
       }
     }
     .main-right {
@@ -165,10 +167,15 @@ export default {
           .li-left {
             width: 10vw;
             text-align: center;
+            line-height: 2.5rem;
+            color: rgb(148, 148, 148);
           }
           .li-middle {
             width: 80vw;
             p {
+              &:first-child{
+                font-family: Helvetica, sans-serif, STHeiTi;
+              }
               &:last-child {
                 font-size: 0.8em;
                 color: rgb(190, 190, 190);

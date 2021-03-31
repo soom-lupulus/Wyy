@@ -3,8 +3,8 @@
     <div class="wrapper">
       <span @click="tagMy" class="underline" ref="tag1">我的</span>
       <span @click="tagRecommend" ref="tag2">每日推荐</span>
-      <span @click="tag1" ref="tag3">热门歌曲</span>
-      <span @click="tag2" ref="tag4">不知道</span>
+      <span @click="tag1" ref="tag3">没开发</span>
+      <span @click="tag2" ref="tag4">没开发</span>
     </div>
   </div>
 </template>
@@ -21,10 +21,12 @@ export default {
   },
   methods: {
     tagMy() {
+      this.clearClass();
       this.addUnderline(this.$refs.tag1);
       this.$router.push("/main/mine");
     },
     tagRecommend() {
+      this.clearClass();
       this.addUnderline(this.$refs.tag2);
       this.$router.push("/main/recommend");
     },

@@ -79,9 +79,17 @@ export default {
       this.watchLoveState();
     },
   },
+  beforeRouteLeave(to, from, next) {
+    // 导航离开该组件的对应路由时调用
+    // 可以访问组件实例 `this`
+    console.log(to, from);
+    next();
+  },
   methods: {
     goDown() {
-      this.$router.go(-1);
+      console.log('haha');  
+      this.$router.push('/main');
+      
     },
     async toggleLikeState() {
       //切换状态

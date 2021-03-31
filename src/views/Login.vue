@@ -34,6 +34,7 @@ export default {
     //登录方法
     async login() {
       try {
+        // 发起手机登录请求
         const { data: res } = await this.$http.get("/login/cellphone", {
           params: {
             phone: this.phone,
@@ -42,11 +43,10 @@ export default {
           },
         });
         if (res.code === 200 || res.code === 304) {
-          console.log('我是res');
-          console.log(res);
           window.sessionStorage.setItem('token', res.token)
           this.$router.replace("/main");
           Toast("登陆成功~");
+          // 保存手机登录后的返回值
           this.$store.dispatch('saveUserInfo', res);
         }else if(res.code === 502){
             Toast(res.msg)

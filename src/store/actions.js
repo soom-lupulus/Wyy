@@ -25,7 +25,6 @@ const yyhaxios = axios.create({
 export default {
     saveUserInfo({ commit }, userinfo) {
         commit(SAVE_USERINFO, userinfo)
-        // console.log(userinfo);
     },
     async getUserInfo1({ commit }) {
         const { data: res } = await yyhaxios.get('/user/subcount', {

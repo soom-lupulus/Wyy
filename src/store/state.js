@@ -33,5 +33,4 @@ export default{
     playing_list_index: 0
     
 
-
 }

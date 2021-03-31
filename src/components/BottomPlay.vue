@@ -39,6 +39,7 @@
       ref="myaudio"
       @canplay="audioLoaded"
       @timeupdate="getSongCurrentTime"
+      @ended="audioEnd"
     ></audio>
   </div>
 </template>
@@ -80,6 +81,10 @@ export default {
         "getPlayingSongDuration",
         this.$refs.myaudio.duration
       );
+    },
+    audioEnd(){
+      console.log('播放结束');
+      this.$bus.$emit('changeBtnState')
     },
     getSongCurrentTime() {
       // console.log('拿到了~');

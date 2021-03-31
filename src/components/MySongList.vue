@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="title">
-      <p>这是我的歌单</p>
+      <p></p>
     </div>
     <div class="mysonglistwrapper" ref="mysonglistwrapper">
       <ul>

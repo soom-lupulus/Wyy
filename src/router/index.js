@@ -73,12 +73,10 @@ router.beforeEach((to, from, next) => {
     if (!token) {
       Toast('请先登录！')
     } else {
-      console.log('yes');
       next()
     }
-  }else{
-    next()
   }
+  next()
 })
 
 
