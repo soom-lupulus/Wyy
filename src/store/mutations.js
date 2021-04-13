@@ -14,7 +14,8 @@ import {
     PLAYING_SONG_CURRENT_TIME,
     PLAYING_BUTTON_STATE,
     PLAYING_LIST,
-    PLAYING_LIST_INDEX
+    PLAYING_LIST_INDEX,
+    REMOVE_ONE_FROM_PLAYLIST
 }
     from './mutation-types'
 
@@ -108,7 +109,12 @@ export default {
             state.playing_list_index = (state.playing_list_index + payload.val + state.playinglist.length) % state.playinglist.length 
         }
         console.log(state.playing_list_index); 
+    },
+    //从播放列表删除一个歌曲
+    [REMOVE_ONE_FROM_PLAYLIST](state, index){
+        state.playinglist.splice(index, 1)
     }
+
 
 
 

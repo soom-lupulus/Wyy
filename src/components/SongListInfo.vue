@@ -81,9 +81,10 @@ export default {
   },
   methods: {
     eachSongClick(item) {
-      // console.log(item.id);
+      // console.log('我嗲了');
       this.$store.dispatch("savePlayingSong", item);
       this.$store.dispatch("getPlayingSongUrl", item.id);
+      // 改变按钮状态
       this.$store.dispatch("toggleBtnState", false);
       //修改播放列表Index
       const cur_index = this.songlistInfo.playlist.tracks.indexOf(item)

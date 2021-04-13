@@ -62,6 +62,8 @@ export default {
         commit("playing_list_index");
         
       });
+      // 播放完毕，改变按钮状态
+      this.$store.dispatch("toggleBtnState", false);
     },
     // 播放上一首
     playLast() {
@@ -81,6 +83,8 @@ export default {
           val: -1
         });
       });
+      // 播放完毕，改变按钮状态
+      this.$store.dispatch("toggleBtnState", false);
     },
   },
 };

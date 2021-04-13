@@ -8,7 +8,7 @@
           <ul ref="myul" v-if="playinglist">
             <li v-for="(item, index) in playinglist" :key="index" @click="theSongClick(item)">
               <p ref="myps">{{ item.name }}</p>
-              <i class="fa fa-times" aria-hidden="true"></i>
+              <i class="fa fa-times" aria-hidden="true" @click.stop="removeIt(item)"></i>
             </li>
           </ul>
         </div>
@@ -30,7 +30,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(["playinglist", "playing_list_index"]),
+    ...mapState(["playinglist", "playing_list_index", "songlistInfo"]),
   },
   mounted() {
     this.$nextTick(() => {
@@ -61,10 +61,27 @@ export default {
     }
   },
   methods: {
+    // 歌单中的歌曲点击
     theSongClick(item){
-      console.log(item);
       // 换歌
       this.$store.dispatch('getPlayingSongUrl', item.id)
+      // 修改歌单正在播放的歌曲样式(修改下标)
+      const cur_index = this.songlistInfo.playlist.tracks.indexOf(item)
+      this.$store.commit('playing_list_index', {
+        type: true,
+        val: cur_index
+      })
+      // 修改页面,也就是保存下一首的歌曲信息
+      this.$store.dispatch("savePlayingSong", item);
+
+    },
+
+    // 歌单中的删除歌曲标签点击
+    removeIt(item){
+      console.log(item);
+      // 拿到下标
+      const cur_index = this.songlistInfo.playlist.tracks.indexOf(item)
+      this.$store.dispatch('removeOneFromPlayList', cur_index)
     }
   }
 };

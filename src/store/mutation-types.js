@@ -31,3 +31,5 @@ export const PLAYING_BUTTON_STATE = 'playing_button_state'
 export const PLAYING_LIST = 'playing_list'
 //播放列表下标
 export const PLAYING_LIST_INDEX = 'playing_list_index'
+//从播放列表删除一个歌曲
+export const REMOVE_ONE_FROM_PLAYLIST = 'removeOneFromPlayList'

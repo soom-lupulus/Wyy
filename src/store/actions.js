@@ -13,12 +13,13 @@ import {
     PLAYING_SONG_DURATION,
     PLAYING_SONG_CURRENT_TIME,
     PLAYING_BUTTON_STATE,
+    REMOVE_ONE_FROM_PLAYLIST
 } from './mutation-types'
 //引入axios
 import axios from 'axios'
 const yyhaxios = axios.create({
-    // baseURL: 'http://polimin.top:3000',
-    baseURL: 'http://localhost:3000',
+    baseURL: 'http://polimin.top:3000',
+    // baseURL: 'http://localhost:3000',
     withCredentials: true
 })
 
@@ -79,6 +80,7 @@ export default {
         // console.log(currenttime);
         commit(PLAYING_SONG_CURRENT_TIME, currenttime)
     },
+    // 改变按钮状态
     toggleBtnState({ commit }, bool) {
         commit(PLAYING_BUTTON_STATE, /*optional*/ bool)
     },
@@ -124,6 +126,10 @@ export default {
             resolve('我服了')
         })
     },
+    // 从播放列表删除一个歌曲
+    removeOneFromPlayList({commit}, index){
+        commit(REMOVE_ONE_FROM_PLAYLIST, index)
+    }
 
 
 
