@@ -8,8 +8,8 @@ import './assets/global.css'
 //引入axios
 import axios from 'axios'
 const instance = axios.create({
-  baseURL: 'http://polimin.top:3000',
-  // baseURL: 'http://localhost:3000',
+  // baseURL: 'http://polimin.top:3000',
+  baseURL: 'http://localhost:3000',
   withCredentials: true
 })
 Vue.prototype.$http = instance
