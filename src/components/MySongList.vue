@@ -38,7 +38,7 @@ export default {
   components: { yggFlex3},
   data() {
     return {
-      bs: {},
+      bs: null,
     };
   },
   computed: {

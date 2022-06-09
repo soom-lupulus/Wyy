@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import myNav from "../components/myNav";
+import MyNav from "../components/MyNav";
 import bottomPlay from "../components/BottomPlay";
 import tags from "../components/Tags";
 import searchList from "../components/SearchList";
@@ -30,7 +30,7 @@ import { mapState } from "vuex";
 
 export default {
   components: {
-    myNav,
+    MyNav,
     bottomPlay,
     tags,
     searchList,
